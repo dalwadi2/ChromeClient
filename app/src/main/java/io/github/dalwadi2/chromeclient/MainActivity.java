@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -30,7 +31,12 @@ public class MainActivity extends AppCompatActivity {
                 builder.setInstantAppsEnabled(true);
                 builder.enableUrlBarHiding();
                 builder.setShowTitle(true);
-
+                builder.setToolbarColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary));
+                builder.setSecondaryToolbarColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimaryDark));
+                builder.setStartAnimations(MainActivity.this, android.R.anim.slide_out_right,
+                        android.R.anim.slide_in_left);
+                builder.setExitAnimations(MainActivity.this, android.R.anim.slide_in_left,
+                        android.R.anim.slide_out_right);
                 CustomTabsIntent customTabsIntent = builder.build();
                 customTabsIntent.intent.setPackage("com.android.chrome");
                 try {
